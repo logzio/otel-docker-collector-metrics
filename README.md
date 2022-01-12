@@ -31,11 +31,11 @@ docker pull logzio/docker-otel-collector-metrics
 
 ```sh
 docker run --name otel-docker-collector-metrics \
- --env METRICS_TOKEN=<<TOKEN>> \
- --env DOCKER_ENDPOINT=<<DOCKER_ENDPOINT>> \
- --env LOGZIO_LISTENER=<<LOGZIO_LISTENER>> \
- --env COLLECTION_INTERVAL=<<COLLECTION_INTERVAL>> \
- --env TIMEOUT=<<TIMEOUT>> \
+ --env METRICS_TOKEN="<<TOKEN>>" \
+ --env DOCKER_ENDPOINT="<<DOCKER_ENDPOINT>>" \
+ --env LOGZIO_LISTENER="<<LOGZIO_LISTENER>>" \
+ --env COLLECTION_INTERVAL="<<COLLECTION_INTERVAL>>" \
+ --env TIMEOUT="<<TIMEOUT>>" \
  -v /var/run/docker.sock:/var/run/docker.sock \
   -v $(pwd)/config.yaml:/config.yaml \
 	/otel-docker-collector-metrics:latest
@@ -45,11 +45,11 @@ or if it's image from Docker hub
 
 ```sh
 docker run --name otel-docker-collector-metrics \
- --env METRICS_TOKEN=<<METRICS_TOKEN>> \
- --env DOCKER_ENDPOINT=<<DOCKER_ENDPOINT>> \
- --env LOGZIO_LISTENER=<<LOGZIO_LISTENER>> \
- --env COLLECTION_INTERVAL=<<COLLECTION_INTERVAL>> \
- --env TIMEOUT=<<TIMEOUT>> \
+ --env METRICS_TOKEN="<<METRICS_TOKEN>>" \
+ --env DOCKER_ENDPOINT="<<DOCKER_ENDPOINT>>" \
+ --env LOGZIO_LISTENER="<<LOGZIO_LISTENER>>" \
+ --env COLLECTION_INTERVAL="<<COLLECTION_INTERVAL>>" \
+ --env TIMEOUT="<<TIMEOUT>>" \
  -v /var/run/docker.sock:/var/run/docker.sock \
  -v $(pwd)/config.yaml:/config.yaml \
  logzio/otel-docker-collector-metrics:latest

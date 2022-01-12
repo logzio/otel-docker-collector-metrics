@@ -1,0 +1,23 @@
+receivers:
+  docker_stats:
+    endpoint: ${DOCKER_ENDPOINT}
+    collection_interval: ${COLLECTION_INTERVAL}
+    timeout: ${TIMEOUT}
+    api_version: 1.24
+    provide_per_core_cpu_metrics: true 
+
+exporters:
+  prometheusremotewrite:
+    endpoint: ${LOGZIO_LISTENER}
+    headers:
+      Authorization: "Bearer ${METRICS_TOKEN}"
+
+service:
+  pipelines:
+    metrics:
+      receivers: [docker_stats]
+      exporters: [prometheusremotewrite]
+  
+  telemetry:
+    logs:
+      level: debug #activate debug mode

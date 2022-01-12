@@ -2,23 +2,8 @@
 
 To simplify shipping metrics from one or many sources, we created Docker Metrics Collector. Docker Metrics Collector is a container that runs Metricbeat with the modules you enable at runtime.
 
-## Installation
+## Pull the Docker image
 
-1. Use `git` to clone this repository into a suitable folder:
-
-```sh
-git clone https://github.com/logzio/otel-docker-collector-metrics.git otel-docker-collector-metrics
-```
-
-2.  `Docker` to build a container from this image:
-
-```sh
-docker build -t 'otel-docker-collector-metrics:latest' ./otel-docker-collector-metrics
-```
-
-## OR you can pull images from docker hub
-
-Pull the Docker image
 Download the Opentelementry Docker metrics collector:
 
 ```sh
@@ -28,20 +13,6 @@ docker pull logzio/docker-otel-collector-metrics
 ## Usage
 
 1. Use the following docker command to run your container.
-
-```sh
-docker run --name otel-docker-collector-metrics \
- --env METRICS_TOKEN="<<TOKEN>>" \
- --env DOCKER_ENDPOINT="<<DOCKER_ENDPOINT>>" \
- --env LOGZIO_LISTENER="<<LOGZIO_LISTENER>>" \
- --env COLLECTION_INTERVAL="<<COLLECTION_INTERVAL>>" \
- --env TIMEOUT="<<TIMEOUT>>" \
- -v /var/run/docker.sock:/var/run/docker.sock \
-  -v $(pwd)/config.yaml:/config.yaml \
-	/otel-docker-collector-metrics:latest
-```
-
-or if it's image from Docker hub
 
 ```sh
 docker run --name otel-docker-collector-metrics \
@@ -58,7 +29,7 @@ docker run --name otel-docker-collector-metrics \
 If you prefer to store these environment variables in a file like [this example](./docker.env), you can run docker like so:
 
 ```sh
-docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/config.yaml:/config.yaml otel-docker-collector-metrics:latest
+docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/config.yaml:/config.yaml logzio/otel-docker-collector-metrics:latest
 ```
 
 | Name                | Description                                                                                                                                           |
@@ -78,6 +49,13 @@ You can view your metrics in Grafana.
 We offer preconfigured dashboards for several sources,
 which you can find by clicking **<i class="fas fa-th-large"></i> > Manage**
 in the left menu.
+
+## Versions
+
+0.1.0:
+
+- Created Dockerfiles for amd64 and arm64
+- Define config.yaml file
 
 ## License
 

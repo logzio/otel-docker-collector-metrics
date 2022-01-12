@@ -69,7 +69,7 @@ docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock
 | COLLECTION_INTERVAL | The interval at which to gather container stats.                                                                                                      |
 | TIMEOUT             | The request timeout for any docker daemon query.                                                                                                      |
 
-### 3. Check Logz.io for your metrics
+### Check Logz.io for your metrics
 
 Give your metrics a few minutes to get from your system to ours,
 and then open [Logz.io](https://app.logz.io/#/dashboard/kibana).

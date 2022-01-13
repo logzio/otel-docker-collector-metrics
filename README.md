@@ -1,22 +1,18 @@
-# Opentelementry Docker metrics collector
+# OpenTelementry Docker Metrics Collector
 
 To simplify shipping metrics from one or many sources, we created Docker Metrics Collector. Docker Metrics Collector is a container that runs Metricbeat with the modules you enable at runtime.
 
-## Pull the Docker image
-
-Download the Opentelementry Docker metrics collector:
+## Pull the Docker image of the OpenTelementry Docker Metrics Collector
 
 ```sh
 docker pull logzio/docker-otel-collector-metrics
 ```
 
-## Usage
-
-1. Use the following docker command to run your container.
+## Run the OpenTelementry Docker Metrics Collector
 
 ```sh
 docker run --name otel-docker-collector-metrics \
- --env METRICS_TOKEN="<<METRICS_TOKEN>>" \
+ --env METRICS_TOKEN="<<METRICS-SHIPPING-TOKEN>>" \
  --env DOCKER_ENDPOINT="<<DOCKER_ENDPOINT>>" \
  --env LOGZIO_LISTENER="<<LOGZIO_LISTENER>>" \
  --env COLLECTION_INTERVAL="<<COLLECTION_INTERVAL>>" \
@@ -26,7 +22,7 @@ docker run --name otel-docker-collector-metrics \
  logzio/otel-docker-collector-metrics:latest
 ```
 
-If you prefer to store these environment variables in a file like [this example](./docker.env), you can run docker like so:
+If you prefer to store these environment variables in an [`.env` file](./docker.env), run the following command:
 
 ```sh
 docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/config.yaml:/config.yaml logzio/otel-docker-collector-metrics:latest
@@ -34,11 +30,11 @@ docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock
 
 | Name                | Description                                                                                                                                           |
 | ------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| METRICS_TOKEN       | Your Logz.io metrics account token. Replace <<METRICS_TOKEN>> with the token(see 'Metrics account plan' section') of the account you want to ship to. |
-| DOCKER_ENDPOINT     | Address to reach the desired Docker daemon.                                                                                                           |
-| LOGZIO_LISTENER     | Database user related what you created for the project                                                                                                |
-| COLLECTION_INTERVAL | The interval at which to gather container stats.                                                                                                      |
-| TIMEOUT             | The request timeout for any docker daemon query.                                                                                                      |
+| METRICS_TOKEN       | Your Logz.io metrics account token. Replace <<METRICS-SHIPPING-TOKEN>> with the token of the account you want to ship to. |
+| DOCKER_ENDPOINT     | Address to reach the required Docker Daemon.                                                                                                           |
+| LOGZIO_LISTENER     | Your  Logz.io listener address, with port 8070 (http) or 8071 (https). For example, for example: `https://listener.logz.io:8071`.                                                                                                |
+| COLLECTION_INTERVAL | The interval at which container stats are gathered.                                                                                                      |
+| TIMEOUT             | The request timeout for any Docker Daemon query.                                                                                                      |
 
 ### Check Logz.io for your metrics
 
@@ -59,4 +55,4 @@ in the left menu.
 
 ## License
 
-is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+Licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.

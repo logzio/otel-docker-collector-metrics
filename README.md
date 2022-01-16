@@ -1,6 +1,6 @@
 # OpenTelementry Docker Metrics Collector
 
-To simplify shipping metrics from one or many sources, we created Docker Metrics Collector. Docker Metrics Collector is a container that runs Metricbeat with the modules you enable at runtime.
+To simplify shipping metrics from one or many sources, we created Docker Metrics Collector. Docker Metrics Collector is a container that runs Opentelemetry collector.
 
 ## Pull the Docker image of the OpenTelementry Docker Metrics Collector
 
@@ -28,13 +28,13 @@ If you prefer to store these environment variables in an [`.env` file](./docker.
 docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/config.yaml:/config.yaml logzio/otel-docker-collector-metrics:latest
 ```
 
-| Name                | Description                                                                                                                                           |
-| ------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| METRICS_TOKEN       | Your Logz.io metrics account token. Replace <<METRICS-SHIPPING-TOKEN>> with the token of the account you want to ship to. |
-| DOCKER_ENDPOINT     | Address to reach the required Docker Daemon.                                                                                                           |
-| LOGZIO_LISTENER     | Your  Logz.io listener address, with port 8070 (http) or 8071 (https). For example, for example: `https://listener.logz.io:8071`.                                                                                                |
-| COLLECTION_INTERVAL | The interval at which container stats are gathered.                                                                                                      |
-| TIMEOUT             | The request timeout for any Docker Daemon query.                                                                                                      |
+| Name                | Description                                                                                                                      |
+| ------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| METRICS_TOKEN       | Your Logz.io metrics account token. Replace <<METRICS-SHIPPING-TOKEN>> with the token of the account you want to ship to.        |
+| DOCKER_ENDPOINT     | Address to reach the required Docker Daemon.                                                                                     |
+| LOGZIO_LISTENER     | Your Logz.io listener address, with port 8070 (http) or 8071 (https). For example, for example: `https://listener.logz.io:8071`. |
+| COLLECTION_INTERVAL | The interval at which container stats are gathered.                                                                              |
+| TIMEOUT             | The request timeout for any Docker Daemon query.                                                                                 |
 
 ### Check Logz.io for your metrics
 

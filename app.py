@@ -10,7 +10,7 @@ class MetricsFetcher:
     def store_array_in_yaml(self):
         excluded_images = ast.literal_eval(
             os.environ['EXCLUDED_IMAGES'])
-        if 'EXCLUDED_IMAGES' in os.environ and len(excluded_images) > 2:
+        if  len(excluded_images) > 2:
 
             with open('./config.yaml') as file:
                 try:
@@ -59,6 +59,7 @@ class MetricsFetcher:
 
 if __name__ == '__main__':
     w = MetricsFetcher()
-    w.store_array_in_yaml()
+    if 'EXCLUDED_IMAGES' in os.environ:
+        w.store_array_in_yaml()
     w.default_params()
     w.run()

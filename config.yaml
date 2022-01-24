@@ -1,25 +1,27 @@
 exporters:
   prometheusremotewrite:
+    resource_to_telemetry_conversion:
+      enabled: true
     endpoint: ${LOGZIO_LISTENER}
     headers:
       Authorization: Bearer ${METRICS_TOKEN}
+
 receivers:
   docker_stats:
     api_version: 1.24
     collection_interval: ${COLLECTION_INTERVAL}
     endpoint: ${DOCKER_ENDPOINT}
-    excluded_images:
-    - pubsub
-    - node-dep
+    excluded_images: null
     provide_per_core_cpu_metrics: true
     timeout: ${TIMEOUT}
+
 service:
   pipelines:
     metrics:
-      exporters:
-      - prometheusremotewrite
       receivers:
       - docker_stats
+      exporters:
+      - prometheusremotewrite
   telemetry:
     logs:
       level: debug

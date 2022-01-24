@@ -11,7 +11,7 @@ docker pull logzio/docker-otel-collector-metrics
 ## Run the OpenTelementry Docker Metrics Collector
 
 ```sh
-docker run --name odocker-otel-collector-metrics \
+docker run --name docker-otel-collector-metrics \
  --env METRICS_TOKEN="<<METRICS-SHIPPING-TOKEN>>" \
  --env LOGZIO_LISTENER="<<LOGZIO_LISTENER>>" \
  -v /var/run/docker.sock:/var/run/docker.sock \
@@ -28,7 +28,7 @@ docker run -d --env-file=docker.env -v /var/run/docker.sock:/var/run/docker.sock
 | ------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
 | METRICS_TOKEN       | Your Logz.io metrics account token. Replace <<METRICS-SHIPPING-TOKEN>> with the token of the account you want to ship to.        |
 | DOCKER_ENDPOINT     | Address to reach the required Docker (default: `unix:///var/run/docker.sock`)Daemon.                                             |
-| LOGZIO_LISTENER     | Your Logz.io listener address, with port 8070 (http) or 8071 (https). For example, for example: `https://listener.logz.io:8071`. |
+| LOGZIO_LISTENER     | Your Logz.io listener address, with port 8070 (http) or 8071 (https). For example, for example: `https://listener.logz.io:8053`. |
 | COLLECTION_INTERVAL | The interval at which container stats are gathered (default: `30s`).                                                             |
 | TIMEOUT             | The request timeout for any Docker Daemon query ( default: `30s`).                                                               |
 
